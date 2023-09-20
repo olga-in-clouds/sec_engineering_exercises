@@ -107,7 +107,7 @@ AAAABB4020e000.0.4006920b.4020e3fc.0.bffff378.80484e7.bffff580.bffff424.bffff430
 - The output should be:![Alt text](image-7.png)
 
 13. Do the hack 
-- Replace the 'AAAA' in the run command with the address (its read from the back for fun)
+- Replace the 'AAAA' in the run command with the address (its read from the back for fun): in my case it is `AAAA`->`"\x28\xa0\x04\x08"`
 - replace last '%x' with '%n' (x is reading and n is writing)
 - run it
 ```
