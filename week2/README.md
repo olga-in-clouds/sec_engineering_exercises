@@ -8,7 +8,7 @@
 `export CFLAGS="-m32 -fno-stack-protector -z execstack -fno-PIE -no-pie -g -std=c99"`
 3. Compile the file with GCC to create an executable object
 ```
-    gcc -g -o vuln vuln_s.c -m32 -fno-stack-protector -z execstack -fno-PIE -no-pie -g
+    gcc -g -o vuln vuln_s.c -m32 -fno-stack-protector -z execstack -fno-pie -no-pie -std=c99
 ```
 or (Im not sure this worked for me, this doesn't work for me now so better to use the above)
 ```
@@ -38,7 +38,7 @@ Expected output: ![Alt text](image-1.png)
 
 7. Add a breakpoint at line 14 (where the call is made from the **main** function to the **vuln** function)
 ```
-    break 16
+    break 15
 ```
 8. Run the program again
 ```
