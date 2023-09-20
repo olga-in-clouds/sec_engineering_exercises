@@ -48,7 +48,7 @@ Expected output:![Alt text](image-2.png)
 
 9. Check the content on the %esp registers by running
 ```
-    x/100x %esp
+    x/100x $esp
 ```
 Should return: ![Alt text](image-3.png)
 
