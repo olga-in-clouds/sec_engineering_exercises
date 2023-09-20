@@ -84,9 +84,11 @@ Try with adding extra padding (BB):
    ![Alt text](image-8.png)
 
    Note: I just rerun that and my working command looked like this:
-   ```
-   run `(python -c 'print "AAAA"+"BB" + "%x." * 143+"%x"')` and the distance calculation was 141 so I guess its always slightly different![image](https://github.com/osuzuki/sec_engineering_exercises/assets/8805399/ef7206d2-c61b-4c37-b1ac-513b8251635c)
 ```
+   run `(python -c 'print "AAAA"+"BB" + "%x." * 143+"%x"')` and the distance calculation was 141 so I guess its always slightly different
+```
+![image](https://github.com/osuzuki/sec_engineering_exercises/assets/8805399/ef7206d2-c61b-4c37-b1ac-513b8251635c)
+
    
 My pointer is now pointing to the hexadecimal representation of 'AAAA' exactly
 
