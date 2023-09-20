@@ -58,9 +58,9 @@ Should return: ![Alt text](image-3.png)
     That means that the **'target'** variable is around 143 positions away from the start of the stack (in the bss section)
     We can run a command that will bring us hexadecimal values up 143 stack positions
 
-11. Try and fail
-    Start the new debugging of the program so you are not stopped by the break (there must be a way to remove the break ;)) (Use 'q' to quickly and then start from fresh in gdb)
-    
+11. **Try and fail**
+    Start the new debugging of the program so you are not stopped by the break (there must be a way to remove the break ;)) (Use 'q' to quit and then start from fresh)
+    `gdb vuln`
     Try 143 spaces and see if you can see **414141** (representation of AAAA) (the number might be different for you depending on the distance)
 ```
      run `(python -c 'print "AAAA" + ".%x." * 143+"%x"')`
