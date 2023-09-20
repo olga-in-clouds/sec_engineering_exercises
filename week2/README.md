@@ -1,16 +1,17 @@
 # sec_engineering_exercises
 
-1. Create a c file like, for example with. 
+## Format string exploitation example (Section 2.5)
+**1. Create a c file like, for example with.**
 '''
     vi vuln_s.c
 '''
    For file content copy vuln_s.c 
 
-2. Set enviroment flags 
+**2. Set environment flags**
 '''
     export CFLAGS="-m32 -fno-stack-protector -z execstack -fno-PIE -no-pie -g -std=c99"
 '''
-3. Compile the file with GCC to create executable object
+**3. Compile the file with GCC to create an executable object**
 '''
     gcc -g -o vuln vuln_s.c -m32 -fno-stack-protector -z execstack -fno-PIE -no-pie -g
 '''
