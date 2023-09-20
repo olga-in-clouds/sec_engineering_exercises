@@ -10,9 +10,9 @@
 ```
     gcc -g -o vuln vuln_s.c -m32 -fno-stack-protector -z execstack -fno-PIE -no-pie -g
 ```
-or (Im not sure this worked for me)
+or (Im not sure this worked for me, this doesn't work for me now so better to use the above)
 ```
-   gcc -g -o vuln vuln_s.c  $CFLAGS
+   gcc -g -o vuln vuln_s.c $CFLAGS
 ```
 4. Execute the file to ensure its working
 ```
@@ -24,6 +24,12 @@ Expected output: ![Alt text](image.png)
 ```
     gdb vuln
 ```
+   Check the file was complied correctly for the debugger by running
+   ```
+      list
+   ```
+   You should see your code when you run that, if you don't something with flags went wrong.
+   
 6. Run the program with '%x' which will return data from the stack - the hexadecimal value of the stack
 ```
     run %x
