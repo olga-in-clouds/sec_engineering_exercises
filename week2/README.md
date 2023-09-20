@@ -38,7 +38,7 @@ Expected output: ![Alt text](image-1.png)
 
 7. Add a breakpoint at line 14 (where the call is made from the **main** function to the **vuln** function)
 ```
-    break 15
+    break 7
 ```
 8. Run the program again
 ```
