@@ -1,7 +1,7 @@
 # sec_engineering_exercises
 
 ## Format string exploitation example (Section 2.5)
-1. Create a c file like, for example with vi: `vi vuln_s`
+1. Create a c file like, for example with vi: `vi vuln_s.c`
    Content for the file: [vuln_s.c](vuln_s.c) 
 
 2. Set environment flags
