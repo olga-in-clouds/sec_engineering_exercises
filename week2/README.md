@@ -1,17 +1,12 @@
 # sec_engineering_exercises
 
 ## Format string exploitation example (Section 2.5)
-**1. Create a c file like, for example with.**
-'''
-    vi vuln_s.c
-'''
-   For file content copy vuln_s.c 
+1. Create a c file like, for example with vi: `vi vuln_s`
+   Content for the file: [vuln_s.c](vuln_s.c) 
 
-**2. Set environment flags**
-'''
-    export CFLAGS="-m32 -fno-stack-protector -z execstack -fno-PIE -no-pie -g -std=c99"
-'''
-**3. Compile the file with GCC to create an executable object**
+2. Set environment flags
+`export CFLAGS="-m32 -fno-stack-protector -z execstack -fno-PIE -no-pie -g -std=c99"`
+3. Compile the file with GCC to create an executable object
 '''
     gcc -g -o vuln vuln_s.c -m32 -fno-stack-protector -z execstack -fno-PIE -no-pie -g
 '''
