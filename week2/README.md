@@ -7,9 +7,9 @@
 2. Set environment flags
 `export CFLAGS="-m32 -fno-stack-protector -z execstack -fno-PIE -no-pie -g -std=c99"`
 3. Compile the file with GCC to create an executable object
-'''
+```
     gcc -g -o vuln vuln_s.c -m32 -fno-stack-protector -z execstack -fno-PIE -no-pie -g
-'''
+```
 4. Execute the file to ensure its working
 '''
    ./vuln test
