@@ -4,7 +4,12 @@
 - 'first' - name of the binary file
 - 'MyFirst.c' - name of the c file
 - '-o' - create object binary
-- '-m32' - binary file to be in 32 bits format
+- `$ export CFLAGS="-m32 -fno-stack-protector -z execstack -fno- PIE -no-pie -g"`
+    - flag `-m32` forces the compilation of 32-bit programs,
+    - flag `-fno-stack-protector` disables stack canaries ( protection mechanism, week3),
+    - flags `-no-pie` and `-fno-pie` disable position-independent code and creates non-relocatable binaries ELF ET_EXEC as it used to be (executable and linkable Format)
+    - flag `-fno-builtin` tells gcc to avoid using optimized version of specific functions (e.g., strcpy, strlen) that are builtin and provided by gcc,
+    - flag `-z execstack` disables NX ( disable the feature No eXecute) and make the satack executable.
 
 
 
@@ -23,7 +28,7 @@
 `disas <funcion_name>` - to see the assembly code of a function 
 `info reg` - shows the content of registers 
 `print $<reg>` - see value in the register
-`print/x $reg` - see the hexadecimal value of the register
+`print/x $reg` - see hexadecimal value of the register
 
 - Memory
     - `backtrace` - how many stack frames are generated in that stack memory
@@ -69,3 +74,8 @@
 - `objdump <objname>` -f file - generates a summary of the file
 - `objdump <objname>` -h file - will show all sections for the file 
 - `objdump <objname>` -d file - will show assembly instructions
+
+
+# Running program
+- `%x` will print the first value on the top of the stack
+- `x/x <address` will pring the contenct of an address 
